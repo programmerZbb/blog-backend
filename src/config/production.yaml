@@ -1,0 +1,16 @@
+MYSQL:
+  # 方式1，利用docker的转发
+  # host: host.docker.internal
+  # port: 8091
+  # 方式2：利用桥接网络，指定一个公共的桥接网络
+  host: host.docker.internal
+  port: 8096
+  password: qazplm
+  username: root
+
+REDIS:
+  # host: host.docker.internal
+  # port: 8093
+  host: redis-service
+  port: 6379
+  password: qazplm

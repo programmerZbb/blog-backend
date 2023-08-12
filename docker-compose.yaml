@@ -1,0 +1,51 @@
+# mysql 在启动的时候创建database比较麻烦，因此需要先启动MySQL，创建完database后才能进行如下的操作
+# version 是指定 docker-compose.yml 的版本，因为不同版本配置不同
+version: '3.8'
+services:
+  # 没有镜像的直接找dockerfile，并且把run的参数都写到这
+  blog-backend:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      # - mysql-service
+      - redis-service
+    # 对外暴露端口需要修改
+    ports:
+      - '8080:8080'
+    environment:
+      - NODE_ENV=production
+    # 配置重启，最多重启三次，失败后不再重启
+    restart: on-failure:3
+    networks:
+      - blog-network
+  # docker run -v data:/var/lib/mysql --name=mysql-test2 -p 8091:3306 -e MYSQL_ROOT_PASSWORD=qazplm -d mysql
+  # 这种方式并不是很好，因为MySQL的database需要在一开始创建好
+  # mysql-service:
+  #   image: mysql
+  #   # ports:
+  #   #   - '8091:3306'
+  #   networks:
+  #     - blog-network
+  #   volumes:
+  #     # - 'data:/var/lib/mysql'
+  #     - /Users/zhangbinbinb28199/my-data/backend/mysql/data:/var/lib/mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=qazplm
+  #   user: '1000:1000'
+  # docker run -v /Users/zhangbinbinb28199/my-data/redis/data:/data --name=redis-test1 --user=1000:1000 -p 8096:6379 -d redis redis-server --requirepass qazplm
+  redis-service:
+    image: redis
+    # ports:
+    #   - 8093:6379
+    volumes:
+      - ${HOME}/my-data/backend/redis/data:/data
+    user: '1000:1000'
+    command: 'redis-server --requirepass qazplm'
+    networks:
+      - blog-network
+# 网络已经创建好了
+networks:
+  blog-network:
+    driver: bridge
+# 如果构建的参数还是旧的，请清理缓存。docker builder prune

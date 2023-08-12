@@ -1,0 +1,13 @@
+MYSQL:
+  host: 127.0.0.1
+  port: 8096
+  password: qazplm
+  username: root
+
+REDIS:
+  host: 127.0.0.1
+  port: 8093
+  password: qazplm
+
+UPLOAD:
+  path: /Users/zhangbinbinb28199/workspace/code/blog-backend/blog-backend/uploads/
