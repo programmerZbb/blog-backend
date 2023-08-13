@@ -76,6 +76,7 @@ export class UploadService {
     }>((resolve, reject) => {
       fs.writeFile(path, buffer, (err) => {
         if (err != null) {
+          console.log(err, '--写入出错--', path);
           throw err;
         }
         const { abstract, count } = this.getMdInfo(buffer.toString('utf-8'));

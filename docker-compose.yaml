@@ -9,7 +9,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     volumes:
-      - $HOME/code/next-blog/data/posts:/data/uploads
+      - $HOME/data/uploads:/data/uploads
     depends_on:
       # - mysql-service
       - redis-service
