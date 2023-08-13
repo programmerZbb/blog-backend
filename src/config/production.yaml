@@ -16,4 +16,4 @@ REDIS:
   password: qazplm
 
 UPLOAD:
-  path: /data/uploads
+  path: /data/uploads/
