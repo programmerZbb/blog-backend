@@ -3,13 +3,13 @@
 version: '3.8'
 services:
   # 没有镜像的直接找dockerfile，并且把run的参数都写到这
-  # sudo docker run -p 8080:8080 --network blog-network -e NODE_ENV=production --restart=on-failure:3 -d programerzbb/blog_backend
+  # sudo docker run -p 8080:8080 --network blog-network -e NODE_ENV=production -v /home/lighthouse/data/uploads:/data/uploads --name blog-backend --restart=on-failure:3 -d blog-backend_blog-backend
   blog-backend:
     build:
       context: ./
       dockerfile: ./Dockerfile
     volumes:
-      - $HOME/data/uploads:/data/uploads
+      - /home/lighthouse/data/uploads:/data/uploads
     depends_on:
       # - mysql-service
       - redis-service
