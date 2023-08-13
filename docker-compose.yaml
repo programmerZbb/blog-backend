@@ -3,6 +3,7 @@
 version: '3.8'
 services:
   # 没有镜像的直接找dockerfile，并且把run的参数都写到这
+  # sudo docker run -p 8080:8080 --network blog-network -e NODE_ENV=production --restart=on-failure:3 -d programerzbb/blog_backend
   blog-backend:
     build:
       context: ./
@@ -20,6 +21,8 @@ services:
     networks:
       - blog-network
   # docker run -v data:/var/lib/mysql --name=mysql-test2 -p 8091:3306 -e MYSQL_ROOT_PASSWORD=qazplm -d mysql
+  # 服务端run
+  # docker run -v $HOME/code/next-blog/data/mysql:/var/lib/mysql -p 8096:3306 --name mysql-service --network blog-network -e MYSQL_ROOT_PASSWORD=qazplm -d mysql
   # 这种方式并不是很好，因为MySQL的database需要在一开始创建好
   # mysql-service:
   #   image: mysql
@@ -33,7 +36,7 @@ services:
   #   environment:
   #     - MYSQL_ROOT_PASSWORD=qazplm
   #   user: '1000:1000'
-  # docker run -v /Users/zhangbinbinb28199/my-data/redis/data:/data --name=redis-test1 --user=1000:1000 -p 8096:6379 -d redis redis-server --requirepass qazplm
+  # docker run -v $HOME/code/next-blog/data/redis:/data --name=redis-service --network blog-network -d redis redis-server --requirepass qazplm
   redis-service:
     image: redis
     # ports:
