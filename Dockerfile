@@ -8,7 +8,7 @@ COPY package.json .
 
 # RUN npm install -g npm@9.8.1
 
-RUN npm config set registry https://mirrors.cloud.tencent.com/npm/ \
+RUN npm config set registry https://registry.npmmirror.com/ \
     && npm install
 
 COPY . .
@@ -29,7 +29,7 @@ ENV NODE_ENV=production
 
 # RUN npm install -g npm@9.8.1
 
-RUN npm config set registry https://mirrors.cloud.tencent.com/npm/ \
+RUN npm config set registry https://registry.npmmirror.com/ \
     && npm install --production
 
 EXPOSE 8080
