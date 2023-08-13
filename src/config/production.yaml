@@ -3,7 +3,7 @@ MYSQL:
   # host: host.docker.internal
   # port: 8091
   # 方式2：利用桥接网络，指定一个公共的桥接网络
-  host: host.docker.internal:host-gateway
+  host: 172.18.0.1
   port: 8096
   password: qazplm
   username: root
