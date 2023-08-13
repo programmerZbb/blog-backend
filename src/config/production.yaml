@@ -16,4 +16,4 @@ REDIS:
   password: qazplm
 
 UPLOAD:
-  path: $HOME/code/next-blog/data/posts/
+  path: /home/lighthouse/code/next-blog/data/posts/
