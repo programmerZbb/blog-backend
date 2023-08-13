@@ -8,6 +8,8 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
+    volumes:
+      - $HOME/code/next-blog/data/posts:/data/uploads
     depends_on:
       # - mysql-service
       - redis-service

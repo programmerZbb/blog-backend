@@ -29,6 +29,8 @@ ENV NODE_ENV=production
 
 # RUN npm install -g npm@9.8.1
 
+RUN mkdir -p /data/uploads
+
 RUN npm config set registry https://registry.npmmirror.com/ \
     && npm install --production
 
