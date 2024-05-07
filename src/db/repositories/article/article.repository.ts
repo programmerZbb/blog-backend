@@ -30,4 +30,8 @@ export class ArticleRepository {
   public async update(article: Update) {
     await this.repository.save(article);
   }
+
+  public async delete(id: number) {
+    await this.repository.delete(id);
+  }
 }

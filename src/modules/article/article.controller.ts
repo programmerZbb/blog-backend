@@ -1,8 +1,10 @@
 import { Controller, Get, Inject, Query } from '@nestjs/common';
 
+import { NeedAuth } from '../../guard/jwt/auth.decorator';
 import { ArticleService } from './article.service';
 import { ArticleListDto, ArticleDetailDto } from './article.dto';
 
+@NeedAuth(false)
 @Controller('article')
 export class ArticleController {
   @Inject(ArticleService)
